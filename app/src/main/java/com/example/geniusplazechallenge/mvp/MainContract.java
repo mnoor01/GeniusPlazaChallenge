@@ -13,7 +13,7 @@ public interface MainContract {
         void requestDataFromServer();
     }
 
-    interface GetNoticeInteractor {
+    interface GetDataInteractor {
         interface OnFinishedListener {
             void onFinished(List<DataItem> dataItemList);
 

@@ -1,8 +1,11 @@
 package com.example.geniusplazechallenge.mvp;
 
-public class InteractorImpl implements MainContract.Presenter {
+import com.example.geniusplazechallenge.apiCall.ApiCall;
+
+public class InteractorImpl implements MainContract.GetDataInteractor {
+
     @Override
-    public void requestDataFromServer() {
+    public void getNoticeArraylist(OnFinishedListener onFinishedListener) {
 
     }
 }
