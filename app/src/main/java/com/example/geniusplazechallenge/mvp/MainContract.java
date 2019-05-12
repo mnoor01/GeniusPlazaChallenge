@@ -14,12 +14,13 @@ public interface MainContract {
     }
 
     interface GetDataInteractor {
+        void getNoticeArraylist(OnFinishedListener onFinishedListener);
         interface OnFinishedListener {
             void onFinished(List<DataItem> dataItemList);
 
             void onFailure(Throwable throwable);
         }
 
-        void getNoticeArraylist(OnFinishedListener onFinishedListener);
+
     }
 }
