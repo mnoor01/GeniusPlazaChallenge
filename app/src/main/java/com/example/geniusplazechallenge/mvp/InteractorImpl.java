@@ -20,18 +20,18 @@ public class InteractorImpl implements MainContract.GetDataInteractor {
     @Override
     public void getNoticeArraylist(final OnFinishedListener onFinishedListener) {
         ApiCall call = RetrofitInstance.getRetrofit().create(ApiCall.class);
-        Call<List<DataItem>> items=call.getDataItems();
+        Call<List<DataItem>> items = call.getDataItems();
 
         items.enqueue(new Callback<List<DataItem>>() {
             @Override
             public void onResponse(Call<List<DataItem>> call, Response<List<DataItem>> response) {
 
-                if (response == null){
-                    Log.d("onResponse", "onResponse: "+response.body().toString());
+                if (response == null) {
+                    Log.d("onResponse", "onResponse: " + response.body().toString());
+                    onFinishedListener.onFinished(response.body());
 
                 }
-                onFinishedListener.onFinished(response.body());
-                Log.d("check call", "onResponse: "+response.body().get(0).getFirstName());
+                Log.d("check call", "onResponse: " + response.body().get(0).getFirstName());
             }
 
             @Override

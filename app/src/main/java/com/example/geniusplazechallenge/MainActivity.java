@@ -28,27 +28,33 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = findViewById(R.id.dataRecyclerview);
-
         presenter = new PresenterImpl(this, new InteractorImpl());
 
         presenter.requestDataFromServer();
-    }
+        setUpRecyclerview();
 
-    private void setUpRecyclerview() {
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
 
     }
+
+
 
     @Override
     public void putDataToRecyclerview(List<DataItem> dataItemList) {
         setUpRecyclerview();
-        MyAdapter adapter = new MyAdapter(dataItemList, onItemClicked,MainActivity.this);
-        adapter.notifyDataSetChanged();
+        MyAdapter adapter = new MyAdapter(dataItemList, onItemClicked, MainActivity.this);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
+
+    }
+    private void setUpRecyclerview() {
+        recyclerView = findViewById(R.id.dataRecyclerview);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
 
     }
 }
