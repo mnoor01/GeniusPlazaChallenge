@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 
 public interface ApiCall {
     @GET("users")
-    Call<List<DataItem>> getDataItems();
+    Call<Response> getDataItems();
 
     @POST("users")
     Call<List<DataItem>> putDataItem();

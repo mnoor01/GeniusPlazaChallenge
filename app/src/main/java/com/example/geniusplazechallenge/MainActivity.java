@@ -17,6 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements MainContract.MainView {
     private MainContract.Presenter presenter;
     private RecyclerView recyclerView;
+    private List<DataItem> items;
     private OnItemClicked onItemClicked = new OnItemClicked() {
         @Override
         public void itemClicked(DataItem dataItem) {
@@ -28,19 +29,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new PresenterImpl(this, new InteractorImpl());
-
-        presenter.requestDataFromServer();
+        presenter = new PresenterImpl(MainActivity.this, new InteractorImpl());
         setUpRecyclerview();
+        presenter.requestDataFromServer();
+
 
 
     }
 
 
 
+
     @Override
     public void putDataToRecyclerview(List<DataItem> dataItemList) {
-        setUpRecyclerview();
+
         MyAdapter adapter = new MyAdapter(dataItemList, onItemClicked, MainActivity.this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -50,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     }
     private void setUpRecyclerview() {
         recyclerView = findViewById(R.id.dataRecyclerview);
-
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
